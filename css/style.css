@@ -1,0 +1,87 @@
+/* style.css */
+
+/* Εφέ Hover για την εικόνα και το κείμενο (προαιρετικό) */
+
+.project-item {
+    /* position: relative; - Αφαιρείται αν δεν το χρειαζόμαστε για overlay */
+    margin-bottom: 24px; /* Κενό μεταξύ των στοιχείων */
+    display: inline-block; /* Απαραίτητο για το Masonry με στήλες */
+    width: 100%;
+    /* Αποφυγή σπασίματος του στοιχείου μεταξύ των στηλών */
+    break-inside: avoid; 
+}
+
+/* Το project-info μπορεί να χρειαστεί ρύθμιση padding αν δεν υπάρχει p-4 στον container */
+.project-info {
+    /* padding-top: 8px; - Αφαιρείται, το κενό δίνεται από το mt-4 στον HTML */
+    color: white;
+}
+
+/* ---------------------------------------------------------------- */
+/* TIMELINE STYLING */
+/* ---------------------------------------------------------------- */
+
+.timeline-dot {
+    /* ΔΕΝ ΧΡΕΙΑΖΕΤΑΙ ΠΛΕΟΝ. Θα χρησιμοποιήσουμε :before */
+    display: none;
+}
+
+/* Base style for all items */
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    /* Αυξημένο κενό */
+    padding-right: 30px;
+    /* Εσωτερικό κενό για το dot */
+}
+
+/* Εφέ dot ::before (για δεξιά στοιχεία - default) */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    /* Ίσια με την πρώτη γραμμή κειμένου */
+    right: 0;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+/* Τροποποίηση για αριστερά στοιχεία (όταν υπάρχει η κλάση md:ml-auto) */
+.timeline-item.md\:ml-auto {
+    padding-left: 30px;
+    /* Εσωτερικό κενό αριστερά */
+    padding-right: 0;
+    /* Αφαίρεση του default δεξιά */
+}
+
+.timeline-item.md\:ml-auto::before {
+    /* Επανατοποθέτηση του dot στην αριστερή πλευρά */
+    right: auto;
+    left: 0;
+}
+
+/* Για να φαίνεται το "dot" και στο mobile, αν και το χρονολόγιο είναι απλοποιημένο */
+@media (max-width: 767px) {
+    /* Εδώ μπορείς να προσθέσεις μία μικρή γραμμή και στο mobile αν θέλεις */
+}
+
+/* style.css */
+
+/* ... (Υπάρχον CSS για Masonry και Timeline) ... */
+
+/* Custom Classes για απόλυτη συμμετρία του Burger X */
+/* Αυτές οι τιμές ενδέχεται να χρειαστούν μικροαλλαγές ανάλογα με το μέγεθος του κουμπιού */
+.menu-open #line-top {
+    transform: translateY(0.675rem) rotate(45deg);
+}
+
+.menu-open #line-bottom {
+    transform: translateY(-0.675rem) rotate(-45deg);
+}
+
+.menu-open #line-middle {
+    opacity: 0;
+}

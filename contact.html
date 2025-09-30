@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Photorealism - Επικοινωνία</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-black text-white">
+
+    <a href="#main-content" class="absolute left-[-9999px] focus:left-0 top-0 bg-white text-black p-3 z-[999]">
+        Πήδηση στο Κύριο Περιεχόμενο
+    </a>
+
+    <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8">
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="text-xl font-light tracking-widest uppercase z-30">
+                STUDIO RENDER
+            </a>
+            <button id="menu-toggle"
+                class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
+                <span
+                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    id="line-top"></span>
+                <span
+                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    id="line-middle"></span>
+                <span
+                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    id="line-bottom"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav id="full-menu"
+        class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
+            <li><a href="index.html" class="hover:text-gray-400 transition duration-300">Αρχική</a></li>
+            <li><a href="projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
+            <li><a href="about.html" class="hover:text-gray-400 transition duration-300">Βιογραφικό</a></li>
+            <li><a href="contact.html" class="hover:text-gray-400 transition duration-300">Επικοινωνία</a></li>
+        </ul>
+        <div class="mt-12 text-sm text-gray-500">
+            &copy; 2025 Studio Render.
+        </div>
+    </nav>
+
+    <main id="main-content" class="pt-24 md:pt-32 pb-16 px-4 md:px-8 min-h-screen flex items-start justify-center">
+        <div class="w-full max-w-2xl">
+            <h1 class="text-4xl md:text-6xl font-light mb-12 uppercase tracking-wider text-center">
+                Let's Collaborate
+            </h1>
+
+            <p class="text-center mb-10 text-lg text-gray-400">
+                Έχεις κάποιο project; Θα χαρούμε να συζητήσουμε τις ανάγκες σου.
+            </p>
+
+            <form action="php/send_email.php" method="POST" class="space-y-6">
+
+                <div id="form-status" role="alert" aria-live="polite" class="hidden p-3 rounded text-center text-sm"></div>
+
+                <div>
+                    <label for="name" class="block text-sm font-light uppercase tracking-wider mb-2">Όνομα</label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full p-3 bg-transparent border-b border-gray-700 focus:border-white outline-none transition duration-300 placeholder-gray-500"
+                        placeholder="Το Όνομά σας">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-light uppercase tracking-wider mb-2">Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="w-full p-3 bg-transparent border-b border-gray-700 focus:border-white outline-none transition duration-300 placeholder-gray-500"
+                        placeholder="example@studio.com">
+                </div>
+
+                <div>
+                    <label for="subject" class="block text-sm font-light uppercase tracking-wider mb-2">Θέμα</label>
+                    <input type="text" id="subject" name="subject" required
+                        class="w-full p-3 bg-transparent border-b border-gray-700 focus:border-white outline-none transition duration-300 placeholder-gray-500"
+                        placeholder="Π.χ. Προσφορά για Αρχιτεκτονικό Rendering">
+                </div>
+
+                <div>
+                    <label for="message" class="block text-sm font-light uppercase tracking-wider mb-2">Μήνυμα</label>
+                    <textarea id="message" name="message" rows="5" required
+                        class="w-full p-3 bg-transparent border border-gray-700 focus:border-white outline-none transition duration-300 placeholder-gray-500 resize-none"
+                        placeholder="Περιγράψτε το project σας..."></textarea>
+                </div>
+
+                <button type="submit"
+                    class="w-full py-3 mt-6 bg-white text-black font-semibold uppercase tracking-widest hover:bg-gray-200 transition duration-300">
+                    Αποστολή Μηνύματος
+                </button>
+            </form>
+
+            <div class="mt-12 text-center text-sm text-gray-500">
+                <p>Ή καλέστε μας στο: +30 210 XXXX XXX</p>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

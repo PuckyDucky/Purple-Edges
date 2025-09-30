@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="el">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Photorealism - Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="bg-black text-white">
+
+    <a href="#main-content" class="absolute left-[-9999px] focus:left-0 top-0 bg-white text-black p-3 z-[999]">
+        Πήδηση στο Κύριο Περιεχόμενο
+    </a>
+
+    <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8">
+        <div class="flex justify-between items-center">
+            <a href="index.html" class="text-xl font-light tracking-widest uppercase z-30">
+                STUDIO RENDER
+            </a>
+
+            <button id="menu-toggle"
+                class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
+                <span
+                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    id="line-top"></span>
+                <span
+                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    id="line-middle"></span>
+                <span
+                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    id="line-bottom"></span>
+            </button>
+        </div>
+    </header>
+
+    <nav id="full-menu"
+        class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
+            <li><a href="index.html" class="hover:text-gray-400 transition duration-300">Αρχική</a></li>
+            <li><a href="projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
+            <li><a href="about.html" class="hover:text-gray-400 transition duration-300">Βιογραφικό</a></li>
+            <li><a href="contact.html" class="hover:text-gray-400 transition duration-300">Επικοινωνία</a></li>
+        </ul>
+        <div class="mt-12 text-sm text-gray-500">
+            &copy; 2025 Studio Render.
+        </div>
+    </nav>
+
+    <main id="main-content" class="relative h-screen overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000"
+            style="background-image: url('https://via.placeholder.com/1920x1080?text=YOUR+HERO+IMAGE'); opacity: 0.8;">
+        </div>
+
+        <div class="absolute inset-0 flex flex-col justify-center items-center z-0">
+            <h1 class="text-5xl md:text-8xl font-thin tracking-wider text-center drop-shadow-lg">
+                ARCHVIZ EXCELLENCE
+            </h1>
+            <p class="mt-4 text-xl md:text-3xl font-light tracking-widest uppercase">
+                Renderings & Visualizations
+            </p>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
