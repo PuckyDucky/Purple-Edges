@@ -1,105 +1,143 @@
+<!--
+
+UTF-8 character set:
+
+    Exclamation mark: &#33;
+    Quotation mark (double): &quot; or &#34;
+    Number sign: &#35;
+    Ampersand: &amp; or &#38;
+    Quotation mark (single) or apostrophe: &apos; or &#39;
+    Left parenthesis: &#40;
+    Right parenthesis: &#41;
+    Asterisk: &#42;
+    Plus sign: &#43;
+    Comma: &#44;
+    Hyphen-minus: &#45;
+    Full stop: &#46;
+    Solidus: &#47;
+    Colon: &#58;
+    Semicolon: &#59;
+    Less than: &lt; or &#60;
+    Equals sign: &#61;
+    Greater than: &gt; or &#62;
+    Question mark: &#63;
+    Commercial at: &#64;
+    Left square bracket: &#91;
+    Reverse solidus: &#92;
+    Right square bracket: &#93;
+    Vertical line: &#124;
+    Latin capital letter U with diaeresis: &#220;
+    Small letter Iota with dialytika and tonos: &#912;
+    Capital letter Iota with dialytika: &#938;
+    Small letter Upsilon with dialytika and tonos: &#944;
+    
+-->
+
 <!DOCTYPE html>
 <html lang="el">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Studio Photorealism - Projects</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./css/style.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Studio Photorealism - Projects</title>
 
-<body class="bg-black text-white">
+        <!-- Stylesheets -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="./css/style.css">
+    </head>
 
-    <a href="#main-content" class="absolute left-[-9999px] focus:left-0 top-0 bg-white text-black p-3 z-[999]">
-        Πήδηση στο Κύριο Περιεχόμενο
-    </a>
-
-    <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8">
-        <div class="flex justify-between items-center">
-            <a href="./index.html" class="text-xl font-light tracking-widest uppercase z-30">
-                STUDIO RENDER
-            </a>
-            <button id="menu-toggle"
-                class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
-                <span
-                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
-                    id="line-top"></span>
-                <span
-                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
-                    id="line-middle"></span>
-                <span
-                    class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
-                    id="line-bottom"></span>
-            </button>
-        </div>
-    </header>
-
-    <nav id="full-menu"
-        class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
-        <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
-            <li><a href="./index.html" class="hover:text-gray-400 transition duration-300">Αρχική</a></li>
-            <li><a href="./projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
-            <li><a href="./about.html" class="hover:text-gray-400 transition duration-300">Βιογραφικό</a></li>
-            <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300">Επικοινωνία</a></li>
-        </ul>
-        <div class="mt-12 text-sm text-gray-500">
-            &copy; 2025 Studio Render.
-        </div>
-    </nav>
+    <body class="bg-black text-white">
+        <a href="#main-content" class="absolute left-[-9999px] focus:left-0 top-0 bg-white text-black p-3 z-[999]">
+            Πήδηση στο Κύριο Περιεχόμενο
+        </a>
 
 
-    <main id="main-content" class="pt-24 md:pt-32 pb-16 px-4 md:px-8 min-h-screen">
-        <h1 class="text-4xl md:text-6xl font-light mb-12 uppercase tracking-wider text-center md:text-center">
-            Selected Projects
-        </h1>
+        <!-- Burger menu (closed) -->
+        <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8">
+            <div class="flex justify-between items-center">
+                <a href="./index.html" id="logo" class="text-xl font-light tracking-widest uppercase z-30">STUDIO RENDER</a>
 
-        <div id="masonry-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                <button id="menu-toggle" class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
+                    <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                        id="line-top"></span>
 
-            <a href="#"
-                class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex flex-col justify-between"
-                aria-labelledby="project-title-1">
+                    <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                        id="line-middle"></span>
 
-                <div
-                    class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin text-gray-500 mb-4">
-                    Project 1
-                </div>
+                    <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                        id="line-bottom"></span>
+                </button>
+            </div>
+        </header>
 
-                <div class="project-info mt-auto">
-                    <p class="text-sm font-light uppercase">Interior / Modern</p>
-                    <h2 class="text-lg mt-1 font-normal">Apartment View</h2>
-                </div>
-            </a>
+        <!-- Burger menu (open) -->
+        <nav id="full-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center
+        items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
+            <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
+                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300">Αρχική</a></li>
 
-            <a href="#"
-                class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex flex-col justify-between"
-                aria-labelledby="project-title-2">
-                <div
-                    class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin text-gray-500 mb-4">
-                    Project 2
-                </div>
-                <div class="project-info mt-auto">
-                    <p class="text-sm font-light uppercase">Exterior / Residential</p>
-                    <h2 class="text-lg mt-1 font-normal">House by the Lake</h2>
-                </div>
-            </a>
+                <li><a href="./projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
 
-            <a href="#"
-                class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex flex-col justify-between"
-                aria-labelledby="project-title-3">
-                <div
-                    class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin text-gray-500 mb-4">
-                    Project 3
-                </div>
-                <div class="project-info mt-auto">
-                    <p class="text-sm font-light uppercase">Product / Commercial</p>
-                    <h2 class="text-lg mt-1 font-normal">Furniture Design</h2>
-                </div>
-            </a>
-        </div>
-    </main>
+                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300">Βιογραφικό</a></li>
 
-    <script src="./js/script.js"></script>
-</body>
+                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300">Επικοινωνία</a></li>
+            </ul>
+
+            <div class="mt-12 text-sm text-gray-500">&copy; 2025 Studio Render.</div>
+        </nav>
+
+
+        <!-- Mansory grid for showcasing the projects -->
+        <main id="main-content" class="pt-24 md:pt-32 pb-16 px-4 md:px-8 min-h-screen">
+            <!-- Title -->
+            <h1 class="text-4xl md:text-6xl font-light mb-12 uppercase tracking-wider text-center md:text-center">Selected Projects</h1>
+
+            <!-- Grid -->
+            <div id="masonry-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+                <!-- First project -->
+                <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
+                flex-col justify-between" aria-labelledby="project-title-1">
+                    <div class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin
+                    text-gray-500 mb-4">Project 1</div>
+
+                    <div class="project-info mt-auto">
+                        <p class="text-sm font-light uppercase">Interior / Modern</p>
+
+                        <h2 class="text-lg mt-1 font-normal">Apartment View</h2>
+                    </div>
+                </a>
+
+                <!-- Second project -->
+                <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
+                flex-col justify-between" aria-labelledby="project-title-2">
+                    <div class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin
+                    text-gray-500 mb-4">Project 2</div>
+
+                    <div class="project-info mt-auto">
+                        <p class="text-sm font-light uppercase">Exterior / Residential</p>
+
+                        <h2 class="text-lg mt-1 font-normal">House by the Lake</h2>
+                    </div>
+                </a>
+
+                <!-- Third project -->
+                <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
+                flex-col justify-between" aria-labelledby="project-title-3">
+                    <div class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin
+                    text-gray-500 mb-4">Project 3</div>
+
+                    <div class="project-info mt-auto">
+                        <p class="text-sm font-light uppercase">Product / Commercial</p>
+
+                        <h2 class="text-lg mt-1 font-normal">Furniture Design</h2>
+                    </div>
+                </a>
+            </div>
+        </main>
+
+
+        <!-- Custom JavaScript -->
+        <script src="./js/script.js"></script>
+    </body>
 
 </html>
