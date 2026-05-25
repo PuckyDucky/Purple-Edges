@@ -1,6 +1,11 @@
 /* CSS code for changing the icon of the cursor */
 body, #logo:hover, #menu-toggle:hover, li a:hover, .hover\:bg-gray-700:hover, .bi:hover {
-    cursor: url('../butterfly.svg') 16 11, auto;
+    cursor: url('../Assets/Cursor\ \(Purple\ Edges\).svg') 10 10, auto;
+}
+
+/* CSS code for changing the icon of the cursor inside the lightbox gallery */
+.lightbox .thumb, .lightbox button {
+    cursor: pointer; 
 }
 
 
@@ -18,12 +23,24 @@ body, #logo:hover, #menu-toggle:hover, li a:hover, .hover\:bg-gray-700:hover, .b
 }
 
 
+/* CSS code for customizing the animation of the hero image */
+@keyframes entrance {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+.animate-entrance {
+    animation: entrance .8s ease-in-out forwards;
+}
+
+
 /* CSS code for the projects page */
 .project-item {
     margin-bottom: 24px;
     display: inline-block;
     width: 100%;
     break-inside: avoid; 
+    border: none;
 }
 
 .project-info {

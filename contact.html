@@ -39,7 +39,8 @@ UTF-8 character set:
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Studio Photorealism - Επικοινωνία</title>
+        <title class="greek" id="titleContact"></title>
+        <link rel="icon" sizes="128x128" href="./Assets/Icon (Purple Edges).svg">
 
         <!-- Stylesheets -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -59,7 +60,9 @@ UTF-8 character set:
         <!-- Burger menu (closed) -->
         <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8">
             <div class="flex justify-between items-center">
-                <a href="./index.html" id="logo" class="text-xl font-light tracking-widest uppercase z-30">STUDIO RENDER</a>
+                <a href="./index.html" class="w-32 md:w-40 z-30 block">
+                    <img src="./Assets/Navbar logo (Purple Edges).svg" alt="Logo with text" class="w-full h-auto">
+                </a>
 
                 <button id="menu-toggle" class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
                     <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
@@ -78,51 +81,58 @@ UTF-8 character set:
         <nav id="full-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center
         items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
             <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
-                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300">Αρχική</a></li>
+                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300 greek" id="home"></a></li>
 
                 <li><a href="./projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
 
-                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300">Βιογραφικό</a></li>
+                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300 greek" id="info"></a></li>
 
-                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300">Επικοινωνία</a></li>
+                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300 greek" id="contact"></a></li>
             </ul>
 
-            <div class="mt-12 text-sm text-gray-500">&copy; 2025 Studio Render.</div>
+            <div id="language-switcher" class="flex gap-4 pt-20 text-white">
+                <button onclick="changeLanguage('el')" class="font-bold border-b-2 border-white">EL</button>
+
+                <button onclick="changeLanguage('en')" class="opacity-50 hover:opacity-100">EN</button>
+            </div>
+
+            <div class="mt-12 text-sm text-gray-500">&copy; 2026 Purple Edges.</div>
         </nav>
 
 
         <!-- Contact information -->
         <main id="main-content" class="pt-24 md:pt-32 pb-16 px-4 md:px-8 min-h-screen flex items-start justify-center">
-            <div class="w-full max-w-2xl">
-                <!-- Title -->
-                <h1 class="text-4xl md:text-6xl font-light mb-12 uppercase tracking-wider text-center">Contact & Find Us</h1>
-
-                <p class="text-center mb-16 text-xl font-light text-gray-300">Είμαστε πάντα πρόθυμοι να συζητήσουμε τις ανάγκες
-                    του project σας.</p>
-
+            <div class="w-full max-w-2xl pt-32">
                 <!-- Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10 max-w-3xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-32 max-w-3xl mx-auto pb-16">
                     <!-- Address -->
                     <div class="space-y-2 text-center">
-                        <h3 class="text-xs uppercase tracking-[0.2em] text-gray-400">Διεύθυνση</h3>
+                        <h3 class="text-xs uppercase tracking-[0.2em] text-gray-400 greek" id="address"></h3>
 
-                        <p class="text-lg font-light">Λεωφ. Κηφισίας 100, <br> 115 26 Αθήνα, Ελλάδα</p>
+                        <a href="https://maps.app.goo.gl/r3Fo4QCiNr2WbAYa6" class="text-lg font-light hover:text-gray-400
+                        transition duration-200" aria-label="Find us on Google Maps">
+                            <p class="mt-2 greek" id="address text"></p>
+                        </a>
                     </div>
 
                     <!-- Phone number -->
                     <div class="space-y-2 text-center">
-                        <h3 class="text-xs uppercase tracking-[0.2em] text-gray-400">Τηλέφωνο</h3>
+                        <h3 class="text-xs uppercase tracking-[0.2em] text-gray-400 greek" id="phone"></h3>
 
-                        <a href="tel:+302101234567" class="text-lg font-light hover:text-white transition duration-200"
-                        aria-label="Καλέστε μας στο +30 210 1234567">+30 210 1234567</a>
+                        <a href="tel:+30 697 244 7046" class="text-lg font-light hover:text-gray-400 transition duration-200"
+                        aria-label="Call us">
+                            <p class="mt-2">697 244 7046</p>
+                        </a>
                     </div>
 
                     <!-- E-mail address -->
                     <div class="space-y-2 text-center">
                         <h3 class="text-xs uppercase tracking-[0.2em] text-gray-400">Email</h3>
 
-                        <a href="mailto:info@studio-render.gr" class="text-lg font-light hover:text-white transition duration-200"
-                        aria-label="Στείλτε μας email στο info@studio-render.gr">info@studio-render.gr</a>
+                        <a href="mailto:artemis.karatoulioti@gmail.com" class="text-lg font-light hover:text-gray-400
+                        transition duration-200" aria-label="Send us an email">
+                            <p class="mt-2">artemis.karatoulioti@gmail.com</p>
+                        </a>
                     </div>
 
                     <!-- Social media accounts (Facebook, Instagram, LinkedIn) -->
@@ -130,18 +140,18 @@ UTF-8 character set:
                         <h3 class="text-xs uppercase tracking-[0.2em] text-gray-400">Social Media</h3>
 
                         <div class="flex justify-center space-x-6 text-2xl">
-                            <a href="https://facebook.com/studio" target="_blank"
-                            class="hover:text-gray-400 transition duration-200" aria-label="Facebook Page">
+                            <a href="https://www.facebook.com/profile.php?id=61588778355205" target="_blank" class="hover:text-gray-400
+                            transition duration-200" aria-label="Facebook Page">
                                 <i class="bi bi-facebook"></i>
                             </a>
 
-                            <a href="https://instagram.com/studio" target="_blank" class="hover:text-gray-400 transition duration-200"
-                            aria-label="Instagram Profile">
+                            <a href="https://www.instagram.com/artemiskaratoulioti/" target="_blank" class="hover:text-gray-400
+                            transition duration-200" aria-label="Instagram Profile">
                                 <i class="bi bi-instagram"></i>
                             </a>
                             
-                            <a href="https://linkedin.com/company/studio" target="_blank" class="hover:text-gray-400 transition duration-200"
-                            aria-label="LinkedIn Profile">
+                            <a href="https://www.linkedin.com/in/artemis-karatoulioti" target="_blank" class="hover:text-gray-400
+                            transition duration-200" aria-label="LinkedIn Profile">
                                 <i class="bi bi-linkedin"></i>
                             </a>
                         </div>
@@ -150,7 +160,7 @@ UTF-8 character set:
                 
                 <!-- Copyright -->
                 <div class="mt-24 text-center text-sm text-gray-500">
-                    <p>&copy; 2025 Studio Render. All Rights Reserved.</p>
+                    <p>&copy; 2026 Studio Render&#46 All Rights Reserved&#46</p>
                 </div>
             </div>
         </main>

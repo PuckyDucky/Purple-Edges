@@ -39,7 +39,8 @@ UTF-8 character set:
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Studio Photorealism - Projects</title>
+        <title>Purple Edges &#45 Projects</title>
+        <link rel="icon" sizes="128x128" href="./Assets/Icon (Purple Edges).svg">
 
         <!-- Stylesheets -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -55,7 +56,9 @@ UTF-8 character set:
         <!-- Burger menu (closed) -->
         <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8">
             <div class="flex justify-between items-center">
-                <a href="./index.html" id="logo" class="text-xl font-light tracking-widest uppercase z-30">STUDIO RENDER</a>
+                <a href="./index.html" class="w-32 md:w-40 z-30 block">
+                    <img src="./Assets/Navbar logo (Purple Edges).svg" alt="Logo with text" class="w-full h-auto">
+                </a>
 
                 <button id="menu-toggle" class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
                     <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
@@ -74,66 +77,163 @@ UTF-8 character set:
         <nav id="full-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center
         items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
             <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
-                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300">Αρχική</a></li>
+                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300 greek" id="home"></a></li>
 
                 <li><a href="./projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
 
-                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300">Βιογραφικό</a></li>
+                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300 greek" id="info"></a></li>
 
-                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300">Επικοινωνία</a></li>
+                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300 greek" id="contact"></a></li>
             </ul>
 
-            <div class="mt-12 text-sm text-gray-500">&copy; 2025 Studio Render.</div>
+            <div id="language-switcher" class="flex gap-4 pt-20 text-white">
+                <button onclick="changeLanguage('el')" class="font-bold border-b-2 border-white">EL</button>
+
+                <button onclick="changeLanguage('en')" class="opacity-50 hover:opacity-100">EN</button>
+            </div>
+
+            <div class="mt-12 text-sm text-gray-500">&copy; 2026 Purple Edges&#46</div>
         </nav>
 
 
         <!-- Mansory grid for showcasing the projects -->
         <main id="main-content" class="pt-24 md:pt-32 pb-16 px-4 md:px-8 min-h-screen">
-            <!-- Title -->
-            <h1 class="text-4xl md:text-6xl font-light mb-12 uppercase tracking-wider text-center md:text-center">Selected Projects</h1>
-
-            <!-- Grid -->
-            <div id="masonry-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+           <!-- Grid -->
+            <div id="masonry-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pt-20">
                 <!-- First project -->
                 <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
-                flex-col justify-between" aria-labelledby="project-title-1">
-                    <div class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin
-                    text-gray-500 mb-4">Project 1</div>
-
-                    <div class="project-info mt-auto">
-                        <p class="text-sm font-light uppercase">Interior / Modern</p>
-
-                        <h2 class="text-lg mt-1 font-normal">Apartment View</h2>
+                flex-col items-center group" aria-labelledby="project-title-1">
+                    <div onclick="openLightbox('bedroom', './Images/Bedroom/darkBedroom.jpg')" class="cursor-pointer flex-grow flex-col
+                    justify-center items-center group text-3xl font-thin text-gray-500">
+                        <img src="./Images/Bedroom/darkBedroom.jpg" class="h-64 object-fill overflow-hidden border border-white"
+                        alt="Thumbnail of a bedroom project (bedroom with gray sheets)">
                     </div>
+
+                    <h2 class="text-lg mt-4 text-white py-5 greek" id="bedroomText"></h2>
                 </a>
 
                 <!-- Second project -->
                 <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
-                flex-col justify-between" aria-labelledby="project-title-2">
-                    <div class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin
-                    text-gray-500 mb-4">Project 2</div>
-
-                    <div class="project-info mt-auto">
-                        <p class="text-sm font-light uppercase">Exterior / Residential</p>
-
-                        <h2 class="text-lg mt-1 font-normal">House by the Lake</h2>
+                flex-col items-center group" aria-labelledby="project-title-2">
+                    <div onclick="openLightbox('kitchen', './Images/Kitchen/greenKitchen1.jpg')" class="cursor-pointer flex-grow flex-col
+                    justify-center items-center text-3xl font-thin text-gray-500">
+                        <img src="./Images/Kitchen/greenKitchen1.jpg" class="h-64 object-fill overflow-hidden border border-white"
+                        alt="Thumbnail of a kitchen project (kitchen with green details)">
                     </div>
+
+                    <h2 class="text-lg mt-4 text-white py-5 greek" id="kitchenText"></h2>
                 </a>
 
                 <!-- Third project -->
                 <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
-                flex-col justify-between" aria-labelledby="project-title-3">
-                    <div class="w-full flex-grow border border-gray-700 flex justify-center items-center text-3xl font-thin
-                    text-gray-500 mb-4">Project 3</div>
-
-                    <div class="project-info mt-auto">
-                        <p class="text-sm font-light uppercase">Product / Commercial</p>
-
-                        <h2 class="text-lg mt-1 font-normal">Furniture Design</h2>
+                flex-col items-center group" aria-labelledby="project-title-3">
+                    <div onclick="openLightbox('livingRoom', './Images/Living room/openFloor2.jpg')" class="cursor-pointer flex-grow
+                    flex-col justify-center items-center text-3xl font-thin text-gray-500">
+                        <img src="./Images/Living room/openFloor2.jpg" class="h-64 object-fill overflow-hidden border border-white"
+                        alt="Thumbnail of a living room project (dark living room with orange sofa)">
                     </div>
+
+                    <h2 class="text-lg mt-4 text-white py-5 greek" id="livingRoomText"></h2>
                 </a>
             </div>
         </main>
+
+
+        <!-- Lightbox gallery for the projects about bedrooms -->
+        <div id="bedroom" class="lightbox fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex-col items-center justify-center p-4">
+            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-3xl">&times;</button>
+        
+            <!-- Main image -->
+            <img src="./Images/Bedroom/darkBedroom.jpg" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
+            alt="Main image for bedroom project (bedroom with gray sheets)">
+        
+            <!-- Thmubnails -->
+            <div class="flex gap-2 overflow-x-auto w-full max-w-lg pb-2">
+                <img src="./Images/Bedroom/darkBedroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Bedroom with gray sheets" onclick="changeImage(this)">
+
+                <img src="./Images/Bedroom/darkWardrobe.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Wardrobe with gray floor" onclick="changeImage(this)">
+
+                <img src="./Images/Bedroom/darkBathroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Bathroom with two mirrors" onclick="changeImage(this)">
+
+                <img src="./Images/Bedroom/blueBedroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Bedroom with blue details" onclick="changeImage(this)">
+
+                <img src="./Images/Bedroom/blueChildBedroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Children's bedroom with blue details" onclick="changeImage(this)">
+
+                <img src="./Images/Bedroom/blueCorridor.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Corridor with blue paneling" onclick="changeImage(this)">
+
+                <img src="./Images/Bedroom/blueBathroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Bathroom with one mirror" onclick="changeImage(this)">
+            </div>
+        </div>
+
+        <!-- Lightbox gallery for the projects about kitchens -->
+        <div id="kitchen" class="lightbox fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex-col items-center justify-center p-4">
+            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-3xl">&times;</button>
+        
+            <!-- Main image -->
+            <img src="./Images/Kitchen/greenKitchen1.jpg" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
+            alt="Main image for kitchen project (kitchen with green details)">
+        
+            <!-- Thumbnails -->
+            <div class="flex gap-2 overflow-x-auto w-full max-w-lg pb-2">
+                <img src="./Images/Kitchen/greenKitchen1.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Kitchen with green details (aspect no.1)" onclick="changeImage(this)">
+
+                <img src="./Images/Kitchen/greenKitchen3.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Kitchen with green details (aspect no.2)" onclick="changeImage(this)">
+
+                <img src="./Images/Kitchen/greenKitchen2.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Kitchen with green details (aspect no.3)" onclick="changeImage(this)">
+
+                <img src="./Images/Kitchen/darkKitchen.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Kitchen with dark details" onclick="changeImage(this)">
+
+                <img src="./Images/Kitchen/blueKitchen.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Kitchen with blue details" onclick="changeImage(this)">
+
+                <img src="./Images/Kitchen/bar.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Bar with green details" onclick="changeImage(this)">
+            </div>
+        </div>
+
+        <!-- Lightbox gallery for the projects about bedrooms -->
+        <div id="livingRoom" class="lightbox fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex-col items-center justify-center p-4">
+            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-3xl">&times;</button>
+        
+            <!-- Main image -->
+            <img src="./Images/Living room/openFloor2.jpg" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
+            alt="Main image for living room project (dark living room with orange sofa)">
+        
+            <!-- Thumbnails -->
+            <div class="flex gap-2 overflow-x-auto w-full max-w-lg pb-2">
+                <img src="./Images/Living room/openFloor2.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Dark living room with orange sofa" onclick="changeImage(this)">
+
+                <img src="./Images/Living room/blueLivingRoom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
+                border-transparent shrink-0" alt="Blue-gray living room with TV" onclick="changeImage(this)">
+
+                <img src="./Images/Living room/openFloor1.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
+                border-transparent shrink-0" alt="Open-floor living room with wooden kitchen" onclick="changeImage(this)">
+
+                <img src="./Images/Living room/darkOpenFloor.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
+                border-transparent shrink-0" alt="Open-floor living room with fireplace" onclick="changeImage(this)">
+
+                <img src="./Images/Living room/blueOpenFloor.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
+                border-transparent shrink-0" alt="Open-floor living room with blue dining chairs" onclick="changeImage(this)">
+
+                <img src="./Images/Living room/brownLivingRoom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
+                border-transparent shrink-0" alt="Living room with a glass door facing the garden" onclick="changeImage(this)">
+
+                <img src="./Images/Living room/livingRoom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
+                shrink-0" alt="Living room with wooden rods on the ceiling" onclick="changeImage(this)">
+            </div>
+        </div>
 
 
         <!-- Custom JavaScript -->

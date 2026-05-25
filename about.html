@@ -39,7 +39,8 @@ UTF-8 character set:
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Studio Photorealism - Βιογραφικό</title>
+        <title class="greek" id="titleAbout"></title>
+        <link rel="icon" sizes="128x128" href="./Assets/Icon (Purple Edges).svg">
 
         <!-- Stylesheets -->
         <script src="https://cdn.tailwindcss.com"></script>
@@ -55,7 +56,9 @@ UTF-8 character set:
         <!-- Burger menu (closed) -->
         <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-8">
             <div class="flex justify-between items-center">
-                <a href="./index.html" id="logo" class="text-xl font-light tracking-widest uppercase z-30">STUDIO RENDER</a>
+                <a href="./index.html" class="w-32 md:w-40 z-30 block">
+                    <img src="./Assets/Navbar logo (Purple Edges).svg" alt="Logo with text" class="w-full h-auto">
+                </a>
 
                 <button id="menu-toggle" class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
                     <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
@@ -74,81 +77,69 @@ UTF-8 character set:
         <nav id="full-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center
         items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
             <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
-                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300">Αρχική</a></li>
+                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300 greek" id="home"></a></li>
 
                 <li><a href="./projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
 
-                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300">Βιογραφικό</a></li>
+                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300 greek" id="info"></a></li>
 
-                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300">Επικοινωνία</a></li>
+                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300 greek" id="contact"></a></li>
             </ul>
 
-            <div class="mt-12 text-sm text-gray-500">&copy; 2025 Studio Render.</div>
+            <div id="language-switcher" class="flex gap-4 pt-20 text-white">
+                <button onclick="changeLanguage('el')" class="font-bold border-b-2 border-white">EL</button>
+
+                <button onclick="changeLanguage('en')" class="opacity-50 hover:opacity-100">EN</button>
+            </div>
+
+            <div class="mt-12 text-sm text-gray-500">&copy; 2026 Purple Edges&#46</div>
         </nav>
 
 
         <!-- Short profiling of the studio and timeline -->
         <main id="main-content" class="pt-24 md:pt-32 pb-16 px-4 md:px-8 min-h-screen">
-            <!-- Title -->
-            <h1 class="text-4xl md:text-6xl font-light mb-12 uppercase tracking-wider text-center md:text-left">Our Story</h1>
-
             <!-- Profiling -->
-            <section class="max-w-4xl mx-auto mb-20 text-lg font-light leading-relaxed">
-                <p class="mb-6">
-                    Το Studio Render ιδρύθηκε το 2018 με σκοπό να γεφυρώσει το χάσμα μεταξύ της αρχιτεκτονικής ιδέας και της
-                    οπτικής πραγματικότητας. Ξεκινήσαμε ως μια μικρή ομάδα, με όραμα να δημιουργούμε φωτορεαλιστικές
-                    απεικονίσεις που δεν είναι απλώς εικόνες, αλλά αφηγήσεις.
-                </p>
-
-                <p class="mb-6">
-                    Η φιλοσοφία μας βασίζεται στην ακρίβεια, το φως και την ατμόσφαιρα. Κάθε έργο είναι μια μοναδική
-                    πρόκληση και προσπαθούμε να αποδώσουμε την ψυχή του σχεδιασμού σε κάθε pixel. Η συνεχής εκπαίδευση σε
-                    νέες τεχνολογίες και το πάθος για την τέχνη του visualization μάς οδήγησε να συνεργαστούμε με κορυφαία
-                    αρχιτεκτονικά γραφεία σε όλο τον κόσμο.
-                </p>
-
-                <p class="text-gray-400 italic">
-                    Συνεργαζόμαστε για να ζωντανέψουμε το όραμά σου.
-                </p>
+            <section class="max-w-4xl mx-auto mb-12 text-lg font-light leading-relaxed">
+                <p class="mb-6 greek" id="description"></p>
             </section>
 
-            <hr class="max-w-4xl mx-auto border-gray-700 my-10">
-
-            <h2 class="text-3xl font-light mb-10 uppercase tracking-wider text-center">Our Timeline</h2>
-
             <!-- Timeline -->
-            <section class="max-w-4xl mx-auto relative pt-8 pb-16">
-                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gray-700 hidden md:block"></div>
+            <section class="max-w-4xl mx-auto">
+                <div class="border-l-2 border-gray-700 ml-3 space-y-12">
+                    <!-- First milestone -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-2 top-2 w-4 h-4 bg-white rounded-full"></div>
 
-                <div class="timeline-item flex justify-end md:justify-start mb-8 w-full md:w-1/2 relative">
-                    <div class="w-full text-right md:text-left">
-                        <h3 class="text-2xl font-semibold text-white mb-1">2018 - The Launch</h3>
+                        <h3 class="text-2xl font-semibold text-white mb-1">2023</h3>
 
-                        <p class="text-gray-400">Ίδρυση του Studio Render και πρώτες συνεργασίες στην Ελλάδα...</p>
+                        <p class="text-gray-400 greek" id="2023"></p>
                     </div>
-                </div>
+            
+                    <!-- Second milestone -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-2 top-2 w-4 h-4 bg-white rounded-full"></div>
 
-                <div class="timeline-item flex justify-start md:justify-end mb-8 w-full md:w-1/2 relative md:ml-auto">
-                    <div class="w-full text-right">
-                        <h3 class="text-2xl font-semibold text-white mb-1">2020 - Global Expansion</h3>
+                        <h3 class="text-2xl font-semibold text-white mb-1">2024</h3>
 
-                        <p class="text-gray-400">Επέκταση σε international projects. Εισαγωγή 3D Animation και VR υπηρεσιών.</p>
+                        <p class="text-gray-400 greek" id="2024"></p>
                     </div>
-                </div>
+            
+                    <!-- Third milestone -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-2 top-2 w-4 h-4 bg-white rounded-full"></div>
 
-                <div class="timeline-item flex justify-end md:justify-start mb-8 w-full md:w-1/2 relative">
-                    <div class="w-full text-right md:text-left">
-                        <h3 class="text-2xl font-semibold text-white mb-1">2022 - Innovation</h3>
+                        <h3 class="text-2xl font-semibold text-white mb-1">2025</h3>
 
-                        <p class="text-gray-400">Υιοθέτηση Real-Time rendering workflows και συνεργασία με κορυφαίους developers.</p>
+                        <p class="text-gray-400 greek" id="2025"></p>
                     </div>
-                </div>
+            
+                    <!-- Fourth milestone -->
+                    <div class="relative pl-8">
+                        <div class="absolute -left-2 top-2 w-4 h-4 bg-white rounded-full"></div>
 
-                <div class="timeline-item flex justify-start md:justify-end mb-8 w-full md:w-1/2 relative md:ml-auto">
-                    <div class="w-full text-right">
-                        <h3 class="text-2xl font-semibold text-white mb-1">2024 - New Horizons</h3>
+                        <h3 class="text-2xl font-semibold text-white mb-1">2026-</h3>
 
-                        <p class="text-gray-400">Συνεχής ανάπτυξη και αναζήτηση νέων μέσων οπτικοποίησης...</p>
+                        <p class="text-gray-400 greek" id="2026"></p>
                     </div>
                 </div>
             </section>
