@@ -1,3 +1,4 @@
+// Custom JavaScript for Purple Edges website
 // Menu toggle logic
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
@@ -24,6 +25,78 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Toggle bar for switching between light and dark mode logic
+const toggleBtn = document.getElementById('theme-toggle');
+const lightLabel = document.getElementById('light-label');
+const darkLabel = document.getElementById('dark-label');
+
+// Update the UI on page load
+const updateLabels = () => {
+    if (document.documentElement.classList.contains('dark')) {
+        lightLabel.style.opacity = '0.3';
+        darkLabel.style.opacity = '1';
+    } else {
+        lightLabel.style.opacity = '1';
+        darkLabel.style.opacity = '0.3';
+    }
+};
+
+// Event Listener for clicking the toggle bar
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    const body = document.body;
+    const isMenuOpen = body.classList.contains('menu-open');
+
+    if (isMenuOpen) {
+        // If the menu is open, temporarily remove the animation
+        body.classList.remove('transition-colors', 'duration-300');
+
+        // Change theme
+        document.documentElement.classList.toggle('dark');
+
+        // Restore animation immediately after
+        setTimeout(() => {
+            body.classList.add('transition-colors', 'duration-300');
+        }, 50);
+    } else {
+        // If the menu is closed, proceed with normal animation
+        document.documentElement.classList.toggle('dark');
+    }
+
+    // Save selection
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+
+    // Update labels (as defined previously)
+    updateLabels();
+});
+
+// Hover effect logic for labels
+const addHoverEffect = (element) => {
+    element.addEventListener('mouseenter', () => {
+        const isActive = element.style.opacity === '1';
+        if (!isActive) {
+            element.style.opacity = '0.6';
+        }
+    });
+
+    element.addEventListener('mouseleave', () => {
+        // On mouse leave, reset to the correct opacity based on the current theme
+        updateLabels();
+    });
+};
+
+// Apply hover effects to both labels
+addHoverEffect(lightLabel);
+addHoverEffect(darkLabel);
+
+// Load theme on startup
+if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark');
+}
+updateLabels();
+
+
+// JavaScript for Projects page
 // Close lightbox when clicking outside the main image
 document.querySelectorAll('.lightbox').forEach(lb => {
     lb.addEventListener('click', function (e) {
@@ -36,19 +109,22 @@ document.querySelectorAll('.lightbox').forEach(lb => {
 // Function to open the lightbox and set the main image
 function openLightbox(theme, imageSrc) {
     const lightbox = document.getElementById(theme);
-    const mainImg = lightbox.querySelector('.main-image');
 
-    mainImg.src = imageSrc;
     lightbox.classList.remove('hidden');
     lightbox.classList.add('flex');
 
-    const thumbs = lightbox.querySelectorAll('.thumb');
-    thumbs.forEach(thumb => {
-        thumb.classList.remove('border-white');
-        if (thumb.src.split('/').pop() === imageSrc.split('/').pop()) {
-            thumb.classList.add('border-white');
-        }
+    lightbox.querySelectorAll('.thumb').forEach(t => {
+        t.classList.remove('border-brand-purple', 'dark:border-gray-400');
+        t.classList.add('border-transparent');
     });
+
+    const matchingThumb = Array.from(lightbox.querySelectorAll('.thumb')).find(thumb => thumb.src.includes(imageSrc)|| lightbox.querySelector('.first-thumb'));
+
+    if (matchingThumb) {
+        matchingThumb.classList.remove('border-transparent');
+        matchingThumb.classList.add('border-brand-purple', 'dark:border-gray-400');
+        lightbox.querySelector('.main-image').src = imageSrc;
+    }
 }
 
 // Function to change the main image when a thumbnail is clicked
@@ -58,8 +134,13 @@ function changeImage(element) {
 
     mainImg.src = element.src;
 
-    parentLightbox.querySelectorAll('.thumb').forEach(t => t.classList.remove('border-white'));
-    element.classList.add('border-white');
+    parentLightbox.querySelectorAll('.thumb').forEach(t => {
+        t.classList.remove('border-brand-purple', 'dark:border-gray-400');
+        t.classList.add('border-transparent');
+    });
+
+    element.classList.remove('border-transparent');
+    element.classList.add('border-brand-purple', 'dark:border-gray-400');
 }
 
 // Function to close the lightbox
@@ -67,10 +148,11 @@ function closeLightbox() {
     document.querySelectorAll('.lightbox').forEach(lb => {
         lb.classList.add('hidden');
         lb.classList.remove('flex');
-        lb.querySelectorAll('.thumb').forEach(t => t.classList.remove('border-white'));
     });
 }
 
+
+// JavaScript for Contact page
 // Translation logic
 const translations = {
     el: {
@@ -91,6 +173,19 @@ const translations = {
         "titleHome": "Purple Edges - Αρχική",
         "titleAbout": "Purple Edges - Πληροφορίες",
         "titleContact": "Purple Edges - Επικοινωνία",
+        "titleAcc": "Δήλωση προσβασιμότητας",
+        "a11y": "Purple Edges - Δήλωση προσβασιμότητας",
+        "accH1": "Δήλωση Προσβασιμότητας",
+        "accDescription1": "Το studio Purple Edges δεσμεύεται να καθιστά την ιστοσελίδα της προσβάσιμη σε όλους τους χρήστες, ανεξάρτητα από τις σωματικές τους ικανότητες ή τη χρήση υποστηρικτικών τεχνολογιών.",
+        "accH2": "Συμμόρφωση",
+        "accDescription2": "Εργαζόμαστε συνεχώς ώστε η ιστοσελίδα μας να συμμορφώνεται με τις Οδηγίες Προσβασιμότητας Περιεχομένου Ιστού (WCAG) 2.1, επίπεδο AA. Οι οδηγίες αυτές ορίζουν πώς το περιεχόμενο ιστού μπορεί να γίνει πιο προσβάσιμο σε άτομα με αναπηρίες.",
+        "accH3": "Τεχνικές Προδιαγραφές",
+        "point1": "Χρήση σημασιολογικού κώδικα HTML5",
+        "point2": "Σωστή χρήση ARIA labels για την καλύτερη πλοήγηση με αναγνώστες οθόνης (screen readers)",
+        "point3": "Χρωματική παλέτα που εξασφαλίζει επαρκή αντίθεση για χρήστες με προβλήματα όρασης",
+        "point4": "Πλήρης πλοήγηση μέσω πληκτρολογίου",
+        "accH4": "Σχόλια και Επικοινωνία",
+        "accDescription3": "Αν συναντήσετε οποιοδήποτε πρόβλημα προσβασιμότητας στην ιστοσελίδα μας, μην διστάσετε να επικοινωνήσετε μαζί μας. Θα καταβάλουμε κάθε δυνατή προσπάθεια, για να διορθώσουμε το ζήτημα άμεσα.",
     },
     en: {
         "home": "Home",
@@ -110,6 +205,19 @@ const translations = {
         "titleHome": "Purple Edges - Home",
         "titleAbout": "Purple Edges - About",
         "titleContact": "Purple Edges - Contact",
+        "titleAcc": "Accessibility statement",
+        "a11y": "Purple Edges - Accessibility statement",
+        "accH1": "Accessibility Statement",
+        "accDescription1": "Purple Edges studio is committed to making its website accessible to all users, regardless of their physical abilities or use of assistive technologies.",
+        "accH2": "Compliance",
+        "accDescription2": "We continuously work to ensure that our website complies with the Web Content Accessibility Guidelines (WCAG) 2.1, level AA. These guidelines define how web content can be made more accessible to people with disabilities.",
+        "accH3": "Technical Specifications",
+        "point1": "Use of semantic HTML5 markup",
+        "point2": "Proper use of ARIA labels for better navigation with screen readers",
+        "point3": "Color palette that ensures sufficient contrast for users with visual impairments",
+        "point4": "Full keyboard navigation",
+        "accH4": "Feedback and Contact",
+        "accDescription3": "If you encounter any accessibility issues on our website, please do not hesitate to contact us. We will make every effort to address the issue promptly.",
     }
 };
 
@@ -145,10 +253,10 @@ function changeLanguage(lang) {
     // Update button styles based on selected language
     langBtns.forEach(btn => {
         if (btn.innerText.toLowerCase() === lang.toLowerCase()) {
-            btn.classList.add('font-bold', 'border-b-2', 'border-white', 'text-white');
+            btn.classList.add('font-bold', 'text-brand-purple', 'dark:text-white');
             btn.classList.remove('opacity-50');
         } else {
-            btn.classList.remove('font-bold', 'border-b-2', 'border-white', 'text-white');
+            btn.classList.remove('font-bold', 'text-brand-purple', 'dark:text-white');
             btn.classList.add('opacity-50');
         }
     });
@@ -157,8 +265,19 @@ function changeLanguage(lang) {
     localStorage.setItem('lang', lang);
 }
 
-// On page load, set the language based on saved preference or default to Greek
+// On page load, set the language and theme based on saved preferences
 window.onload = () => {
-    const savedLang = localStorage.getItem('lang') || 'el'; // Προεπιλογή Ελληνικά
+    const savedLang = localStorage.getItem('lang') || 'el'; // Default to Greek if no preference is saved
     changeLanguage(savedLang);
+
+    const savedTheme = localStorage.getItem('theme'); // Default to system preference if no preference is saved
+
+    if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+    } else {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    }
+
+    updateLabels();
 };

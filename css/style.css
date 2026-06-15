@@ -3,6 +3,17 @@ body, #logo:hover, #menu-toggle:hover, li a:hover, .hover\:bg-gray-700:hover, .b
     cursor: url('../Assets/Cursor\ \(Purple\ Edges\).svg') 10 10, auto;
 }
 
+/* Improvement of contrast ratio for theme-toggle button */
+.dark #theme-toggle {
+    background-color: #374151;
+    color: #f3f4f6;
+}
+
+#theme-toggle {
+    background-color: #e5e7eb;
+    color: #111827;
+}
+
 /* CSS code for changing the icon of the cursor inside the lightbox gallery */
 .lightbox .thumb, .lightbox button {
     cursor: pointer; 

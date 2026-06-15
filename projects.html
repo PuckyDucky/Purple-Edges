@@ -26,6 +26,7 @@ UTF-8 character set:
     Reverse solidus: &#92;
     Right square bracket: &#93;
     Vertical line: &#124;
+    Copyright sign: &copy; or &#169;
     Latin capital letter U with diaeresis: &#220;
     Small letter Iota with dialytika and tonos: &#912;
     Capital letter Iota with dialytika: &#938;
@@ -39,15 +40,39 @@ UTF-8 character set:
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Purple Edges &#45 Projects</title>
+        <title>Purple Edges - Projects</title>
         <link rel="icon" sizes="128x128" href="./Assets/Icon (Purple Edges).svg">
 
         <!-- Stylesheets -->
         <script src="https://cdn.tailwindcss.com"></script>
         <link rel="stylesheet" href="./css/style.css">
+
+        <!-- Dark mode feature for Tailwind -->
+        <script>
+            tailwind.config = {
+                darkMode: 'class', // Dark mode activation for CDN
+                theme: {
+                    extend: {
+                        // Custom colors or fonts
+                        colors: {
+                            'brand-purple': '#81699A',
+                        },
+                    }
+                }
+            }
+
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage))) {
+                // If the user has explicitly chosen dark mode, or if no preference is set, enable dark mode
+                if (localStorage.theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                }
+            }
+        </script>
     </head>
 
-    <body class="bg-black text-white">
+    <body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
         <a href="#main-content" class="absolute left-[-9999px] focus:left-0 top-0 bg-white text-black p-3 z-[999]">
             Πήδηση στο Κύριο Περιεχόμενο
         </a>
@@ -60,39 +85,48 @@ UTF-8 character set:
                     <img src="./Assets/Navbar logo (Purple Edges).svg" alt="Logo with text" class="w-full h-auto">
                 </a>
 
-                <button id="menu-toggle" class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none">
-                    <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                <button id="menu-toggle" class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none"
+                aria-label="Toggle burger menu">
+                    <span class="block w-full h-0.5 bg-black dark:bg-white transition-all duration-300 ease-in-out transform origin-center"
                         id="line-top"></span>
 
-                    <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    <span class="block w-full h-0.5 bg-black dark:bg-white transition-all duration-300 ease-in-out transform origin-center"
                         id="line-middle"></span>
 
-                    <span class="block w-full h-0.5 bg-white transition-all duration-300 ease-in-out transform origin-center"
+                    <span class="block w-full h-0.5 bg-black dark:bg-white transition-all duration-300 ease-in-out transform origin-center"
                         id="line-bottom"></span>
                 </button>
             </div>
         </header>
 
         <!-- Burger menu (open) -->
-        <nav id="full-menu" class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-95 z-40 flex flex-col justify-center
-        items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
+        <nav id="full-menu" class="fixed top-0 left-0 w-full h-full bg-white dark:bg-black bg-opacity-95 transition-colors duration-300
+        z-40 flex flex-col justify-center items-center transform -translate-y-full transition-transform duration-500 ease-in-out">
             <ul class="text-4xl md:text-6xl font-light text-center space-y-6">
-                <li><a href="./index.html" class="hover:text-gray-400 transition duration-300 greek" id="home"></a></li>
+                <li>
+                    <a href="./index.html" class="hover:text-brand-purple dark:hover:text-gray-400 transition duration-300 greek" id="home"></a>
+                </li>
 
-                <li><a href="./projects.html" class="hover:text-gray-400 transition duration-300">Projects</a></li>
+                <li>
+                    <a href="./projects.html" class="hover:text-brand-purple dark:hover:text-gray-400 transition duration-300">Projects</a>
+                </li>
 
-                <li><a href="./about.html" class="hover:text-gray-400 transition duration-300 greek" id="info"></a></li>
+                <li>
+                    <a href="./about.html" class="hover:text-brand-purple dark:hover:text-gray-400 transition duration-300 greek" id="info"></a>
+                </li>
 
-                <li><a href="./contact.html" class="hover:text-gray-400 transition duration-300 greek" id="contact"></a></li>
+                <li>
+                    <a href="./contact.html" class="hover:text-brand-purple dark:hover:text-gray-400 transition duration-300 greek" id="contact"></a>
+                </li>
             </ul>
 
-            <div id="language-switcher" class="flex gap-4 pt-20 text-white">
-                <button onclick="changeLanguage('el')" class="font-bold border-b-2 border-white">EL</button>
-
+            <div id="language-switcher" class="flex gap-4 pt-20 text-brand-purple dark:text-white">
+                <button onclick="changeLanguage('el')" class="font-bold hover:opacity-100">EL</button>
+                
                 <button onclick="changeLanguage('en')" class="opacity-50 hover:opacity-100">EN</button>
             </div>
 
-            <div class="mt-12 text-sm text-gray-500">&copy; 2026 Purple Edges&#46</div>
+            <div class="mt-12 text-sm text-gray-500">&copy; 2026 Purple Edges&#46;</div>
         </nav>
 
 
@@ -101,139 +135,166 @@ UTF-8 character set:
            <!-- Grid -->
             <div id="masonry-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto pt-20">
                 <!-- First project -->
-                <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
-                flex-col items-center group" aria-labelledby="project-title-1">
-                    <div onclick="openLightbox('bedroom', './Images/Bedroom/darkBedroom.jpg')" class="cursor-pointer flex-grow flex-col
+                <a href="#" class="project-item group block p-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800
+                transition duration-300 h-96 flex flex-col items-center group" aria-labelledby="project-title-1">
+                    <div onclick="openLightbox('bedroom', './Images/Bedroom/darkBedroom.webp')" class="cursor-pointer flex-grow flex-col
                     justify-center items-center group text-3xl font-thin text-gray-500">
-                        <img src="./Images/Bedroom/darkBedroom.jpg" class="h-64 object-fill overflow-hidden border border-white"
-                        alt="Thumbnail of a bedroom project (bedroom with gray sheets)">
+                        <img src="./Images/Bedroom/darkBedroom.webp" class="h-64 object-fill overflow-hidden hover:border-black
+                        dark:hover:border-white" alt="Thumbnail of a bedroom project (bedroom with gray sheets)" loading="lazy">
                     </div>
 
-                    <h2 class="text-lg mt-4 text-white py-5 greek" id="bedroomText"></h2>
+                    <h2 class="text-lg mt-4 py-5 greek text-gray-700 dark:text-white group-hover:text-brand-purple dark:group-hover:text-gray-400
+                    transition-colors duration-300" id="bedroomText"></h2>
                 </a>
 
                 <!-- Second project -->
-                <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
-                flex-col items-center group" aria-labelledby="project-title-2">
-                    <div onclick="openLightbox('kitchen', './Images/Kitchen/greenKitchen1.jpg')" class="cursor-pointer flex-grow flex-col
+                <a href="#" class="project-item group block p-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800
+                transition duration-300 h-96 flex flex-col items-center group" aria-labelledby="project-title-2">
+                    <div onclick="openLightbox('kitchen', './Images/Kitchen/greenKitchen1.webp')" class="cursor-pointer flex-grow flex-col
                     justify-center items-center text-3xl font-thin text-gray-500">
-                        <img src="./Images/Kitchen/greenKitchen1.jpg" class="h-64 object-fill overflow-hidden border border-white"
-                        alt="Thumbnail of a kitchen project (kitchen with green details)">
+                        <img src="./Images/Kitchen/greenKitchen1.webp" class="h-64 object-fill overflow-hidden hover:border-black
+                        dark:hover:border-white" alt="Thumbnail of a kitchen project (kitchen with green details)" loading="lazy">
                     </div>
 
-                    <h2 class="text-lg mt-4 text-white py-5 greek" id="kitchenText"></h2>
+                    <h2 class="text-lg mt-4 py-5 greek text-gray-700 dark:text-white group-hover:text-brand-purple dark:group-hover:text-gray-400
+                    transition-colors duration-300" id="kitchenText"></h2>
                 </a>
 
                 <!-- Third project -->
-                <a href="#" class="project-item group block p-4 bg-gray-800 hover:bg-gray-700 transition duration-300 h-96 flex
-                flex-col items-center group" aria-labelledby="project-title-3">
-                    <div onclick="openLightbox('livingRoom', './Images/Living room/openFloor2.jpg')" class="cursor-pointer flex-grow
+                <a href="#" class="project-item group block p-4 bg-gray-200 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800
+                transition duration-300 h-96 flex flex-col items-center group" aria-labelledby="project-title-3">
+                    <div onclick="openLightbox('livingRoom', './Images/Living room/openFloor2.webp')" class="cursor-pointer flex-grow
                     flex-col justify-center items-center text-3xl font-thin text-gray-500">
-                        <img src="./Images/Living room/openFloor2.jpg" class="h-64 object-fill overflow-hidden border border-white"
-                        alt="Thumbnail of a living room project (dark living room with orange sofa)">
+                        <img src="./Images/Living room/openFloor2.webp" class="h-64 object-fill overflow-hidden hover:border-black
+                        dark:hover:border-white" alt="Thumbnail of a living room project (dark living room with orange sofa)" loading="lazy">
                     </div>
 
-                    <h2 class="text-lg mt-4 text-white py-5 greek" id="livingRoomText"></h2>
+                    <h2 class="text-lg mt-4 py-5 greek text-gray-700 dark:text-white group-hover:text-brand-purple dark:group-hover:text-gray-400
+                    transition-colors duration-300" id="livingRoomText"></h2>
                 </a>
             </div>
         </main>
 
 
         <!-- Lightbox gallery for the projects about bedrooms -->
-        <div id="bedroom" class="lightbox fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex-col items-center justify-center p-4">
-            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-3xl">&times;</button>
+        <div id="bedroom" class="lightbox fixed inset-0 bg-white dark:bg-black bg-opacity-90 hidden z-50 flex-col items-center
+        justify-center p-4">
+            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-4xl text-black dark:text-white hover:text-brand-purple
+            dark:hover:text-gray-400 transition-colors duration-300">&times;</button>
         
             <!-- Main image -->
-            <img src="./Images/Bedroom/darkBedroom.jpg" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
-            alt="Main image for bedroom project (bedroom with gray sheets)">
+            <img src="./Images/Bedroom/darkBedroom.webp" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
+            alt="Main image for bedroom project (bedroom with gray sheets)" loading="lazy">
         
             <!-- Thmubnails -->
-            <div class="flex gap-2 overflow-x-auto w-full max-w-lg pb-2">
-                <img src="./Images/Bedroom/darkBedroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Bedroom with gray sheets" onclick="changeImage(this)">
+            <div class="flex md:justify-center gap-2 overflow-x-auto w-full max-w-lg pb-2">
+                <img src="./Images/Bedroom/darkBedroom.webp" class="thumb first-thumb w-16 h-16 object-cover cursor-pointer border-b-2
+                border-transparent pb-1 shrink-0 transition-colors duration-300" alt="Bedroom with gray sheets" onclick="changeImage(this)"
+                loading="lazy">
 
-                <img src="./Images/Bedroom/darkWardrobe.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Wardrobe with gray floor" onclick="changeImage(this)">
+                <img src="./Images/Bedroom/darkWardrobe.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Wardrobe with gray floor" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Bedroom/darkBathroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Bathroom with two mirrors" onclick="changeImage(this)">
+                <img src="./Images/Bedroom/darkBathroom.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Bathroom with two mirrors" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Bedroom/blueBedroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Bedroom with blue details" onclick="changeImage(this)">
+                <img src="./Images/Bedroom/blueBedroom.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Bedroom with blue details" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Bedroom/blueChildBedroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Children's bedroom with blue details" onclick="changeImage(this)">
+                <img src="./Images/Bedroom/blueChildBedroom.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Children's bedroom with blue details" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Bedroom/blueCorridor.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Corridor with blue paneling" onclick="changeImage(this)">
+                <img src="./Images/Bedroom/blueCorridor.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Corridor with blue paneling" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Bedroom/blueBathroom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Bathroom with one mirror" onclick="changeImage(this)">
+                <img src="./Images/Bedroom/blueBathroom.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Bathroom with one mirror" onclick="changeImage(this)" loading="lazy">
             </div>
         </div>
 
         <!-- Lightbox gallery for the projects about kitchens -->
-        <div id="kitchen" class="lightbox fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex-col items-center justify-center p-4">
-            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-3xl">&times;</button>
+        <div id="kitchen" class="lightbox fixed inset-0 bg-white dark:bg-black bg-opacity-90 hidden z-50 flex-col items-center
+        justify-center p-4">
+            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-4xl text-black dark:text-white hover:text-brand-purple
+            dark:hover:text-gray-400 transition-colors duration-300">&times;</button>
         
             <!-- Main image -->
-            <img src="./Images/Kitchen/greenKitchen1.jpg" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
-            alt="Main image for kitchen project (kitchen with green details)">
+            <img src="./Images/Kitchen/greenKitchen1.webp" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
+            alt="Main image for kitchen project (kitchen with green details)" loading="lazy">
         
             <!-- Thumbnails -->
-            <div class="flex gap-2 overflow-x-auto w-full max-w-lg pb-2">
-                <img src="./Images/Kitchen/greenKitchen1.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Kitchen with green details (aspect no.1)" onclick="changeImage(this)">
+            <div class="flex md:justify-center gap-2 overflow-x-auto w-full max-w-lg pb-2">
+                <img src="./Images/Kitchen/greenKitchen1.webp" class="thumb first-thumb w-16 h-16 object-cover cursor-pointer border-b-2
+                border-transparent pb-1 shrink-0 transition-colors duration-300" alt="Kitchen with green details (aspect no.1)" onclick="changeImage(this)"
+                loading="lazy">
 
-                <img src="./Images/Kitchen/greenKitchen3.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Kitchen with green details (aspect no.2)" onclick="changeImage(this)">
+                <img src="./Images/Kitchen/greenKitchen3.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Kitchen with green details (aspect no.2)" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Kitchen/greenKitchen2.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Kitchen with green details (aspect no.3)" onclick="changeImage(this)">
+                <img src="./Images/Kitchen/greenKitchen2.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Kitchen with green details (aspect no.3)" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Kitchen/darkKitchen.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Kitchen with dark details" onclick="changeImage(this)">
+                <img src="./Images/Kitchen/darkKitchen.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Kitchen with dark details" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Kitchen/blueKitchen.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Kitchen with blue details" onclick="changeImage(this)">
+                <img src="./Images/Kitchen/blueKitchen.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Kitchen with blue details" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Kitchen/bar.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Bar with green details" onclick="changeImage(this)">
+                <img src="./Images/Kitchen/bar.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Bar with green details" onclick="changeImage(this)" loading="lazy">
             </div>
         </div>
 
-        <!-- Lightbox gallery for the projects about bedrooms -->
-        <div id="livingRoom" class="lightbox fixed inset-0 bg-black bg-opacity-90 hidden z-50 flex-col items-center justify-center p-4">
-            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-white text-3xl">&times;</button>
+        <!-- Lightbox gallery for the projects about living rooms -->
+        <div id="livingRoom" class="lightbox fixed inset-0 bg-white dark:bg-black bg-opacity-90 hidden z-50 flex-col items-center
+        justify-center p-4">
+            <button onclick="closeLightbox()" class="absolute top-5 right-5 text-4xl text-black dark:text-white hover:text-brand-purple
+            dark:hover:text-gray-400 transition-colors duration-300">&times;</button>
         
             <!-- Main image -->
-            <img src="./Images/Living room/openFloor2.jpg" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
-            alt="Main image for living room project (dark living room with orange sofa)">
+            <img src="./Images/Living room/openFloor2.webp" class="main-image max-w-full max-h-[70vh] object-contain mb-6"
+            alt="Main image for living room project (dark living room with orange sofa)" loading="lazy">
         
             <!-- Thumbnails -->
-            <div class="flex gap-2 overflow-x-auto w-full max-w-lg pb-2">
-                <img src="./Images/Living room/openFloor2.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Dark living room with orange sofa" onclick="changeImage(this)">
+            <div class="flex md:justify-center gap-2 overflow-x-auto w-full max-w-lg pb-2">
+                <img src="./Images/Living room/openFloor2.webp" class="thumb first-thumb w-16 h-16 object-cover cursor-pointer border-b-2
+                border-transparent pb-1 shrink-0 transition-colors duration-300" alt="Dark living room with orange sofa" onclick="changeImage(this)"
+                loading="lazy">
 
-                <img src="./Images/Living room/blueLivingRoom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
-                border-transparent shrink-0" alt="Blue-gray living room with TV" onclick="changeImage(this)">
+                <img src="./Images/Living room/blueLivingRoom.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Blue-gray living room with TV" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Living room/openFloor1.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
-                border-transparent shrink-0" alt="Open-floor living room with wooden kitchen" onclick="changeImage(this)">
+                <img src="./Images/Living room/openFloor1.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Open-floor living room with wooden kitchen" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Living room/darkOpenFloor.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
-                border-transparent shrink-0" alt="Open-floor living room with fireplace" onclick="changeImage(this)">
+                <img src="./Images/Living room/darkOpenFloor.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Open-floor living room with fireplace" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Living room/blueOpenFloor.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
-                border-transparent shrink-0" alt="Open-floor living room with blue dining chairs" onclick="changeImage(this)">
+                <img src="./Images/Living room/blueOpenFloor.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Open-floor living room with blue dining chairs" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Living room/brownLivingRoom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2
-                border-transparent shrink-0" alt="Living room with a glass door facing the garden" onclick="changeImage(this)">
+                <img src="./Images/Living room/brownLivingRoom.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Living room with a glass door facing the garden" onclick="changeImage(this)" loading="lazy">
 
-                <img src="./Images/Living room/livingRoom.jpg" class="thumb w-16 h-16 object-cover cursor-pointer border-2 border-transparent
-                shrink-0" alt="Living room with wooden rods on the ceiling" onclick="changeImage(this)">
+                <img src="./Images/Living room/livingRoom.webp" class="thumb w-16 h-16 object-cover cursor-pointer border-b-2 border-transparent
+                pb-1 shrink-0 transition-colors duration-300" alt="Living room with wooden rods on the ceiling" onclick="changeImage(this)" loading="lazy">
             </div>
         </div>
+
+
+        <!-- Toggle bar for switching between light and dark mode -->
+        <div id="theme-toggle" class="fixed bottom-6 right-6 z-50 cursor-pointer bg-gray-300 dark:bg-gray-700 text-gray-900 dark:text-gray-100
+        rounded-full px-4 py-2 flex items-center gap-2 shadow-lg transition-all duration-300" aria-label="Toggle light and dark mode">
+            <span id="light-label" class="text-xs font-bold transition-opacity px-1">LIGHT</span>
+            <span id="dark-label" class="text-xs font-bold transition-opacity px-1">DARK</span>
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="mt-20 py-6 border-t border-gray-200 text-center">
+            <a href="./accessibility.html" class="text-xs text-gray-400 hover:text-brand-purple dark:hover:text-gray-400 transition-colors
+            duration-300 greek" id="a11y"></a>
+        </footer>
 
 
         <!-- Custom JavaScript -->
