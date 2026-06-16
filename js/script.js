@@ -1,5 +1,4 @@
-// Custom JavaScript for Purple Edges website
-// Menu toggle logic
+// 1. Menu toggle logic
 document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const fullMenu = document.getElementById('full-menu');
@@ -7,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     menuToggle.addEventListener('click', () => {
         const isMenuOpen = fullMenu.classList.contains('translate-y-0');
+        fullMenu.style.pointerEvents = 'auto'; // Enable pointer events when the menu is open
 
         if (isMenuOpen) {
             fullMenu.classList.remove('translate-y-0');
@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Toggle bar for switching between light and dark mode logic
+
+// 2. Toggle bar for switching between light and dark mode logic
 const toggleBtn = document.getElementById('theme-toggle');
 const lightLabel = document.getElementById('light-label');
 const darkLabel = document.getElementById('dark-label');
@@ -41,46 +42,72 @@ const updateLabels = () => {
     }
 };
 
-// Event Listener for clicking the toggle bar
-document.getElementById('theme-toggle').addEventListener('click', () => {
+// Function to toggle theme with optional forced theme
+const toggleTheme = (forceTheme = null) => {
     const body = document.body;
     const isMenuOpen = body.classList.contains('menu-open');
 
+    // Animate the transition only if the menu is open, otherwise just toggle the theme
     if (isMenuOpen) {
-        // If the menu is open, temporarily remove the animation
         body.classList.remove('transition-colors', 'duration-300');
+        
+        // If a specific theme is forced, apply it; otherwise, toggle the current theme
+        if (forceTheme) {
+            forceTheme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.toggle('dark');
+        }
 
-        // Change theme
-        document.documentElement.classList.toggle('dark');
-
-        // Restore animation immediately after
         setTimeout(() => {
             body.classList.add('transition-colors', 'duration-300');
         }, 50);
     } else {
-        // If the menu is closed, proceed with normal animation
-        document.documentElement.classList.toggle('dark');
+        if (forceTheme) {
+            forceTheme === 'dark' ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.toggle('dark');
+        }
     }
 
-    // Save selection
     const isDark = document.documentElement.classList.contains('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
-
-    // Update labels (as defined previously)
     updateLabels();
+};
+
+// Event listener for the toggle button
+toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleTheme();
+});
+
+// Event listener for "light" label
+lightLabel.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleTheme('light');
+    lightLabel.style.cursor = "url('../Assets/Cursor\ \(Purple\ Edges\).svg') 10 10, auto";
+});
+
+// Evet listener for "dark" label
+darkLabel.addEventListener('click', (e) => {
+    e.stopPropagation();
+    toggleTheme('dark');
+    darkLabel.style.cursor = "url('../Assets/Cursor\ \(Purple\ Edges\).svg') 10 10, auto";
 });
 
 // Hover effect logic for labels
 const addHoverEffect = (element) => {
     element.addEventListener('mouseenter', () => {
-        const isActive = element.style.opacity === '1';
-        if (!isActive) {
+        // If, for some reson, the opacity was 1.0, the line "element.style.opacity = '1';" would compare string values, which would not work as intended. Therefore, we use
+        // "parseFloat" to convert the string to a number for comparison.
+        if (parseFloat(element.style.opacity) < 1) {
             element.style.opacity = '0.6';
+            element.style.cursor = 'pointer';
+        } else {
+            element.style.cursor = "url('../Assets/Cursor\ \(Purple\ Edges\).svg') 10 10, auto";
         }
     });
 
     element.addEventListener('mouseleave', () => {
-        // On mouse leave, reset to the correct opacity based on the current theme
         updateLabels();
     });
 };
@@ -96,8 +123,7 @@ if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && w
 updateLabels();
 
 
-// JavaScript for Projects page
-// Close lightbox when clicking outside the main image
+// 3. Close lightbox when clicking outside the main image
 document.querySelectorAll('.lightbox').forEach(lb => {
     lb.addEventListener('click', function (e) {
         if (e.target === this) {
@@ -152,8 +178,7 @@ function closeLightbox() {
 }
 
 
-// JavaScript for Contact page
-// Translation logic
+// 4. Translation logic
 const translations = {
     el: {
         "home": "Αρχική",
@@ -173,8 +198,8 @@ const translations = {
         "titleHome": "Purple Edges - Αρχική",
         "titleAbout": "Purple Edges - Πληροφορίες",
         "titleContact": "Purple Edges - Επικοινωνία",
-        "titleAcc": "Δήλωση προσβασιμότητας",
-        "a11y": "Purple Edges - Δήλωση προσβασιμότητας",
+        "titleAcc": "Δήλωση Προσβασιμότητας",
+        "a11y": "Purple Edges - Δήλωση Προσβασιμότητας",
         "accH1": "Δήλωση Προσβασιμότητας",
         "accDescription1": "Το studio Purple Edges δεσμεύεται να καθιστά την ιστοσελίδα της προσβάσιμη σε όλους τους χρήστες, ανεξάρτητα από τις σωματικές τους ικανότητες ή τη χρήση υποστηρικτικών τεχνολογιών.",
         "accH2": "Συμμόρφωση",
@@ -206,7 +231,7 @@ const translations = {
         "titleAbout": "Purple Edges - About",
         "titleContact": "Purple Edges - Contact",
         "titleAcc": "Accessibility statement",
-        "a11y": "Purple Edges - Accessibility statement",
+        "a11y": "Purple Edges - Accessibility Statement",
         "accH1": "Accessibility Statement",
         "accDescription1": "Purple Edges studio is committed to making its website accessible to all users, regardless of their physical abilities or use of assistive technologies.",
         "accH2": "Compliance",
@@ -255,9 +280,13 @@ function changeLanguage(lang) {
         if (btn.innerText.toLowerCase() === lang.toLowerCase()) {
             btn.classList.add('font-bold', 'text-brand-purple', 'dark:text-white');
             btn.classList.remove('opacity-50');
+            btn.style.cursor = "url('../Assets/Cursor\ \(Purple\ Edges\).svg') 10 10, auto";
+            btn.ariaDisabled = true;
         } else {
             btn.classList.remove('font-bold', 'text-brand-purple', 'dark:text-white');
             btn.classList.add('opacity-50');
+            btn.style.cursor = 'pointer';
+            btn.ariaDisabled = false;
         }
     });
 
@@ -265,7 +294,8 @@ function changeLanguage(lang) {
     localStorage.setItem('lang', lang);
 }
 
-// On page load, set the language and theme based on saved preferences
+
+// 5. On page load, set the language and theme based on saved preferences
 window.onload = () => {
     const savedLang = localStorage.getItem('lang') || 'el'; // Default to Greek if no preference is saved
     changeLanguage(savedLang);
