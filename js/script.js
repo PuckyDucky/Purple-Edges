@@ -297,7 +297,7 @@ function changeLanguage(lang) {
 
 // 5. On page load, set the language and theme based on saved preferences
 window.onload = () => {
-    const savedLang = localStorage.getItem('lang') || 'el'; // Default to Greek if no preference is saved
+    const savedLang = localStorage.getItem('lang') || 'en'; // Default to English if no preference is saved
     changeLanguage(savedLang);
 
     const savedTheme = localStorage.getItem('theme'); // Default to system preference if no preference is saved

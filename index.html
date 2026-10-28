@@ -41,6 +41,7 @@ UTF-8 character set:
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title class="greek" id="titleHome"></title>
+        <meta name="description" content="Purple Edges is a professional photorealism, 3D rendering, and interior design studio in Northern Greece founded by Artemis Karatoulioti.">
         <link rel="icon" sizes="128x128" href="./Assets/Icon (Purple Edges).svg">
 
         <!-- Stylesheets -->
@@ -70,6 +71,39 @@ UTF-8 character set:
                 }
             }
         </script>
+
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          "name": "Purple Edges",
+          "alternateName": ["Πούρπλ Έτζες", "Purple Edges Photorealism Studio"],
+          "founder": {
+            "@type": "Person",
+            "name": "Artemis Karatoulioti",
+            "alternateName": "Άρτεμις Καρατουλιώτη"
+          },
+          "image": "https://www.purpleedges.gr/Assets/Logo.png",
+          "url": "https://www.purpleedges.gr",
+          "telephone": "+306972447046",
+          "email": "artemis.karatoulioti@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Dimokratias 50",
+            "addressLocality": "Kozani",
+            "postalCode": "50100",
+            "addressCountry": "GR"
+          },
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "Northern Greece",
+            "alternateName": "Βόρεια Ελλάδα"
+          },
+          "foundingDate": "2023",
+          "description": "Photorealism, 3D rendering, and interior design studio.",
+          "alternateDescription": "Φωτορεαλισμός, 3D απεικόνιση και διακόσμηση εσωτερικών χώρων."
+        }
+        </script>
     </head>
 
     <body class="bg-white text-black dark:bg-black dark:text-white transition-colors duration-300">
@@ -81,7 +115,9 @@ UTF-8 character set:
         <!-- Burger menu (closed) -->
         <header class="fixed top-0 left-0 w-full z-[100] p-6 md:p-8">
             <div class="flex justify-between items-center">
-                <a href="./index.html" id="logo" class="text-xl font-light tracking-widest uppercase z-30"></a>
+                <a href="./index.html" class="w-32 md:w-40 z-30 block invisible">
+                    <img src="./Assets/Navbar logo (Purple Edges).svg" alt="Logo with text" class="w-full h-auto">
+                </a>
 
                 <button id="menu-toggle" class="relative w-8 h-8 flex flex-col justify-around items-center z-30 focus:outline-none"
                 aria-label="Toggle burger menu">
